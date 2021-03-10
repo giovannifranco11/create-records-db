@@ -26,7 +26,7 @@
     $resultado = $b->execute();
     $productos = $b->fetchALL();
 
-    //var_dump($students);
+    //var_dump($productos);
 
     ?>
 
@@ -39,25 +39,33 @@
     <title>Crear Pedido</title>
 </head>
 <body>
+<h1>**********PASTELERÍA MONYSWEET******** <br/><br/></h1>
+  
+<h1>FORMULARIO PEDIDOS <br/><br/></h1>
     
 <form action="guardar-pedido.php" method="GET">
-        Cliente 
-        <select name="cliente" id="">
-
-        <?php
-            for($i=0; $i<count($clientes); $i++){
-        ?>
-            <option value="<?php echo $clientes[$i]["id"] ?>">
-                <?php echo $clientes[$i]["nombre"] ?>
-            </option>
-        <?php
-            }
-        ?>            
-        <select/>
+        <h2>Página Web 2    Crear nuevo pedido</h2>
         <br/><br/>
-        Producto 
-        <select name="productos" id="">
+    Cliente: 
+        <select name="cliente" id="">
+        <option value="">--Seleccione--</option>
+            <?php
+                for($i=0; $i<count($clientes); $i++){
+            ?>
+                <option value="<?php echo $clientes[$i]["id"] ?>">
+                    <?php echo $clientes[$i]["nombre"] ?>
+                </option>
+                
+            <?php
+                }
+            ?>            
+        <select/>
 
+        <br/><br/>
+
+        Producto: 
+        <select name="productos" id="">
+        <option value="">--Seleccione--</option>
         <?php
             for($i=0; $i<count($productos); $i++){
         ?>
@@ -73,10 +81,10 @@
         <br/>
         
         <br/>
-        Fecha entrega1:<input type="text" name="fecha_entrega">
+        Fecha entrega:<input type="text" name="fecha_entrega">
         <br/><br/>
         
-        <input type="submit" value="Crear Pedido">
+        <input type="submit" value="Crear Nuevo Pedido">
 
     </form>
     <br/><br/>
