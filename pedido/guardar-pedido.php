@@ -53,12 +53,26 @@
     $resultado = $b->execute();   
     ?>
 
-    <h1>**********PASTELERÍA MONYSWEET******** <br/><br/></h1>
+<link rel="stylesheet" href="css/styles.css" type="text/css">
+
+<body background="imagenes/3.jpg">
+    <h1>
+    <center>
+    <span class="titulos"> ♥♥♥♥♥♥♥♥♥♥ PASTELERÍA MONYSWEET ♥♥♥♥♥♥♥♥♥ </span> 
+ <center/>
+</h1>
+<header>  
+    <center>      
+         <img src="imagenes/banner2.jpg"" alt="Imagen">
+</center>
+    </header>
+    <br/><br/>
   
-<h1>FORMULARIO PEDIDOS <br/><br/></h1>
+    <center>
+ <span class="titulos">REGISTRO DE PEDIDOS</span>
     
 <form action="guardar-pedido.php" method="GET">
-        <h2>Página Web 2    Crear nuevo pedido</h2>
+        <h2>Página Web 4:    Crear nuevo pedido</h2>
         <br/><br/>
     Cliente: 
         <select name="cliente" id="">
@@ -113,3 +127,4 @@
     }
 
 ?>
+</body>

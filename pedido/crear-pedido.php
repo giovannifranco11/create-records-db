@@ -36,15 +36,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
+
     <title>Crear Pedido</title>
 </head>
-<body>
-<h1>**********PASTELERÍA MONYSWEET******** <br/><br/></h1>
+<body background="imagenes/3.jpg">
+<h1>
+<center>
+ <span class="titulos"> ♥♥♥♥♥♥♥♥♥♥ PASTELERÍA MONYSWEET ♥♥♥♥♥♥♥♥♥  </span> 
+ <center/>
+</h1>
+<header>        
+         <img src="imagenes/banner.jpg"" alt="Imagen">
+    </header>
+    <br/><br/>
+<center>
+ <span class="titulos">GENERAR NUEVO PEDIDO</span> 
   
-<h1>FORMULARIO PEDIDOS <br/><br/></h1>
-    
-<form action="guardar-pedido.php" method="GET">
-        <h2>Página Web 2    Crear nuevo pedido</h2>
+    <form action="guardar-pedido.php" method="POST">
+    <h2>Página Web 3:    Crear nuevo pedido </h2>
+
+
         <br/><br/>
     Cliente: 
         <select name="cliente" id="">
