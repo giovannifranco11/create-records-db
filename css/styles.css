@@ -21,7 +21,15 @@ h2 {
     font-family:cursive;
     color:sienna;
     font-size: 40px;
-    border: solid 2px red;
+    border: solid 2px blueviolet;
+    background:powderblue;
+}
+
+.subtitulos {
+    font-family:cursive;
+    color:sienna;
+    font-size: 20px;
+    border: solid 2px blueviolet;
     background:powderblue;
 }
 

@@ -14,16 +14,17 @@
  <span class="titulos"> ♥♥♥♥♥♥♥♥♥♥ PASTELERÍA MONYSWEET ♥♥♥♥♥♥♥♥♥  </span> 
  <center/>
 </h1>
-<header>        
-         <img src="imagenes/banner.jpg"" alt="Imagen">
+<header>  
+    <center>      
+         <img src="imagenes/logo.jpeg"" alt="Imagen">
+</center>
     </header>
-    <br/><br/>
+    <br/>
 <center>
- <span class="titulos">REGISTRO DE CLIENTES</span> 
-  
+ <span class="subtitulos">REGISTRO DE CLIENTES</span>   
     <form action="guardar-cliente.php" method="POST">
     <h2>Página Web 1:    Crear cliente nuevo </h2>
-    <br/><br/>    
+      
         Cliente: <input type="text" name="nombre"> 
         <br/><br/>
         Teléfono: <input type="text" name="telefono"> 

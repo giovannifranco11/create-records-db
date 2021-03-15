@@ -54,7 +54,9 @@
     ?>
 
 <link rel="stylesheet" href="css/styles.css" type="text/css">
-
+<head>
+<title>Crear Pedido</title>
+</head>
 <body background="imagenes/3.jpg">
     <h1>
     <center>
