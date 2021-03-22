@@ -89,8 +89,7 @@
             
         <select/>
 
-        <br/>
-        
+        <br/>        
         <br/>
         Fecha entrega:<input type="text" name="fecha_entrega">
         <br/><br/>
