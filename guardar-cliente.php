@@ -57,7 +57,6 @@
         <br/><br/>
         
         <input type="submit" value="Guardar cliente en BD">
-
         
     </form>
         <?php     
