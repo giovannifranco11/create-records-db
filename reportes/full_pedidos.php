@@ -10,8 +10,8 @@
     $conexion = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
 
     //2. Build SQL sentence
-    $sql = "SELECT c.nombre as nombre_cli, c.telefono, p.fecha_entrega, pr.nombre as nombre_prod, pr.valor 
-    FROM clientes as c JOIN pedidos as p ON c.id = p.id_cliente JOIN productos as pr ON p.id_producto = pr.id 
+    $sql = "SELECT c.nombre as nombre_cli, c.genero, c.telefono, p.fecha_entrega, pr.nombre as nombre_pro, pr.valor 
+    FROM `clientes` as c JOIN pedidos as p ON c.id = p.id_cliente JOIN productos as pr ON p.id_producto = pr.id  
     ORDER BY c.nombre ASC";
 
     //3. Prepare SQL sentence
@@ -41,6 +41,7 @@
     <table border="1">
         <tr>
             <td><b>Nombre Cliente</b></td>
+            <td><b>Género</b></td>
             <td><b>Teléfono</b></td>
             <td><b>Fecha entrega</b></td>
             <td><b>Nombre Producto</b></td>
@@ -55,6 +56,20 @@
             <?php echo $pedidos[$i]["nombre_cli"] ?> 
         </td>
 
+        <td> 
+            <?php 
+                 $genero = $pedidos[$i]["genero"];
+                 if($genero == 0){
+                    echo "Femenino";
+                 }  
+                 else{
+            ?>
+                     <b><u>Masculino<u/><b/> 
+            <?php
+                 }   // no se debe poner html dentro de un echo
+                ?> 
+        </td>
+
         <td>
             <?php echo $pedidos[$i]["telefono"] ?>
         </td>
@@ -64,7 +79,7 @@
         </td>
 
         <td>
-            <?php echo $pedidos[$i]["nombre_prod"] ?>
+            <?php echo $pedidos[$i]["nombre_pro"] ?>
         </td>
 
         <td>

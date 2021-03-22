@@ -1,5 +1,4 @@
-<?php
-    
+<?php    
     
     //1. Connect to Database
     $host = "localhost";

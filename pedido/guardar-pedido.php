@@ -1,5 +1,4 @@
-<?php
-    
+<?php  
     
     //1. Connect to Database
     $host = "localhost";
@@ -9,7 +8,7 @@
 
     $conexion = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
 
-    //2. Build SQL sentence
+    //2. Build SQL sentence clientes
     $sql = "SELECT id, nombre FROM clientes";
     //3. Prepare SQL sentence
     $b = $conexion->prepare($sql);
@@ -18,7 +17,7 @@
     $clientes = $b->fetchALL();
 
 
-    //2. Build SQL sentence
+    //2. Build SQL sentence productos
     $sql = "SELECT id, nombre FROM productos";
     //3. Prepare SQL sentence
     $b = $conexion->prepare($sql);
