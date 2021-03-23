@@ -1,6 +1,25 @@
+<br/>
 <?php
     
-    
+    $where = '';
+    if(isset($_REQUEST['valor'])){ 
+        $valor = $_REQUEST['valor'];
+        if($valor != ""){            
+        $where = "WHERE pr.valor = '$valor'";    
+        }
+    }    
+    if(isset($_REQUEST['genero'])){    // función isset sirve para saber si existe lo que viene en el request   
+        $genero = $_REQUEST['genero'];
+        if($genero != ""){
+            if($where == ""){
+                $where = "WHERE c.genero = '$genero'";
+            }
+            else{
+                $where = "$where AND c.genero = '$genero'";
+            }            
+        }       
+    }
+
     //1. Connect to Database
     $host = "localhost";
     $dbname = "pasteleria";
@@ -11,8 +30,11 @@
 
     //2. Build SQL sentence
     $sql = "SELECT c.nombre as nombre_cli, c.genero, c.telefono, p.fecha_entrega, pr.nombre as nombre_pro, pr.valor 
-    FROM `clientes` as c JOIN pedidos as p ON c.id = p.id_cliente JOIN productos as pr ON p.id_producto = pr.id  
+    FROM `clientes` as c JOIN pedidos as p ON c.id = p.id_cliente JOIN productos as pr ON p.id_producto = pr.id 
+    $where 
     ORDER BY c.nombre ASC";
+
+    var_dump($sql);
 
     //3. Prepare SQL sentence
     $a = $conexion->prepare($sql);
@@ -37,6 +59,22 @@
     <title>Lista de pedidos</title>
 </head>
 <body>
+<br/><br/>
+    <form action="full_pedidos.php">
+        Genero:
+        <select name="genero" >
+            <option value="">--Seleccione--</option>
+            <option value="0">Femenino</option>
+            <option value="1">Masculino</option>
+        </select>
+        <br/><br/>
+        Valor:
+        <input type="number" name="valor">
+        <br/><br/>
+        <input type="submit" value="Buscar"/>
+        <hr/>
+    </form>
+
     <h1>Lista de Pedidos</h1>
     <table border="1">
         <tr>
@@ -45,8 +83,7 @@
             <td><b>Teléfono</b></td>
             <td><b>Fecha entrega</b></td>
             <td><b>Nombre Producto</b></td>
-            <td><b>Valor</b></td>
-            
+            <td><b>Valor</b></td>            
         </tr>
 <?php
     for($i=0; $i<count($pedidos); $i++){
