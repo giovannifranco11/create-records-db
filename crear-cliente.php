@@ -27,6 +27,8 @@
       
         Cliente: <input type="text" name="nombre"> 
         <br/><br/>
+        Género: <input type="text" name="genero"> 
+        <br/><br/>
         Teléfono: <input type="text" name="telefono"> 
         <br/><br/>
         Edad: <input type="text" name="edad">

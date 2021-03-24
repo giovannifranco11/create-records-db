@@ -23,7 +23,7 @@
     $b = $conexion->prepare($sql);
     //4. Execute SQL sentence
     $resultado = $b->execute();
-    $producto = $b->fetchALL();
+    $productos = $b->fetchALL();
 
     //var_dump($productos);
 
@@ -31,7 +31,7 @@
 
 <?php
     $cliente = $_REQUEST["cliente"];
-    $productos = $_REQUEST["productos"];
+    $producto = $_REQUEST["producto"];
     $fecha_entrega = $_REQUEST["fecha_entrega"];
     
     //1. Connect to Database
@@ -43,7 +43,7 @@
     $conexion = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
 
     //2. Build SQL sentence
-    $sql = "INSERT INTO pedidos (id, id_cliente, id_producto, fecha_entrega) VALUES(NULL, '$cliente', '$productos', '$fecha_entrega')";
+    $sql = "INSERT INTO pedidos (id, id_cliente, id_producto, fecha_entrega) VALUES(NULL, '$cliente', '$producto', '$fecha_entrega')";
 
     //3. Prepare SQL sentence
     $b = $conexion->prepare($sql);
@@ -96,10 +96,10 @@
         <select name="producto" id="">
         <option value="">--Seleccione--</option>
         <?php
-            for($i=0; $i<count($producto); $i++){
+            for($i=0; $i<count($productos); $i++){
         ?>
-            <option value="<?php echo $producto[$i]["id"] ?>">
-                <?php echo $producto[$i]["nombre"] ?>
+            <option value="<?php echo $productos[$i]["id"] ?>">
+                <?php echo $productos[$i]["nombre"] ?>
             </option>
         <?php
             }
@@ -120,7 +120,7 @@
 <?php
 
     if($resultado){
-        echo "El pedido con el id_producto: $productos asociado al id_cliente: $cliente se ha creado con éxito";
+        echo "El pedido con el id_producto:$producto asociado al id_cliente: $cliente se ha creado con éxito";
     }
     else{
         echo "Error al crear el pedido";
