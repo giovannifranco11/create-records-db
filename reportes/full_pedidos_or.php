@@ -6,27 +6,27 @@
         $valor = $_REQUEST['valor'];
         if($valor != ""){            
         $where = "WHERE pr.valor = '$valor'";    
-        }
-    }    
-    if(isset($_REQUEST['genero'])){    // función isset sirve para saber si existe lo que viene en el request   
+        }   
+
+        if(isset($_REQUEST['genero'])){    // función isset sirve para saber si existe lo que viene en el request   
         $genero = $_REQUEST['genero'];
         if($genero != ""){
             if($where == ""){
                 $where = "WHERE c.genero = '$genero'";
             }
         }
-    }
-    if(isset($_REQUEST['edad'])){ 
-        $edad = $_REQUEST['edad'];
-        if($edad != ""){            
-             $where = "WHERE c.edad = '$edad'";  
-        }
-                
-        }
-    else{
-        $where = "$where OR c.genero = '$genero' OR c.edad = '$edad'";
-    }      
 
+            if(isset($_REQUEST['edad'])){ 
+            $edad = $_REQUEST['edad'];
+            if($edad != ""){            
+             $where = "WHERE c.edad = '$edad'";  
+                }      
+            }
+    }
+    else{
+        $where = "$where OR c.genero = '$genero' OR c.edad = '$edad' OR pr.valor = '$valor'";
+    } 
+}
 
 
 
@@ -74,10 +74,12 @@
 <br/><br/>
     <form action="full_pedidos_or.php">
         Genero:
-        <select type="text" name="genero" value="<?php echo '$genero1'; ?>">
-            <option name="genero1" value="">--Seleccione--</option>
-            <option name="genero1" value="0">Femenino</option>
-            <option name="genero1" value="1">Masculino</option>
+        <select id="selected" type="text" name="genero" >
+            <option  value="">--Seleccione--</option>
+            <option value="0">Femenino</option>                
+            <option value="1">Masculino</option>
+            
+            
         </select>
         <br/><br/>
         Valor:
@@ -87,8 +89,6 @@
         <input type="number" name="edad" value="<?php echo $edad; ?>">
         <br/><br/>
         <input type="submit" value="Buscar por OR"/> 
-        <a href="full_pedidos_and.php">Buscar por AND</a>
-        <input type="submit" action="full_pedidos_and.php" value="Buscar por AND"/>
         <hr/>
     </form>
     Página 1

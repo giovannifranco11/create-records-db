@@ -14,11 +14,21 @@
             if($where == ""){
                 $where = "WHERE c.genero = '$genero'";
             }
-            else{
-                $where = "$where OR c.genero = '$genero'";
-            }            
-        }       
+        }
     }
+    if(isset($_REQUEST['edad'])){ 
+        $edad = $_REQUEST['edad'];
+        if($edad != ""){            
+             $where = "WHERE c.edad = '$edad'";  
+        }
+                
+        }
+    else{
+        $where = "$where OR c.genero = '$genero' OR c.edad = '$edad'";
+    }      
+
+
+
 
     //1. Connect to Database
     $host = "localhost";
@@ -29,7 +39,7 @@
     $conexion = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
 
     //2. Build SQL sentence
-    $sql = "SELECT c.nombre as nombre_cli, c.genero, c.telefono, p.fecha_entrega, pr.nombre as nombre_pro, pr.valor 
+    $sql = "SELECT c.nombre as nombre_cli, c.genero, c.edad, p.fecha_entrega, pr.nombre as nombre_pro, pr.valor 
     FROM `clientes` as c JOIN pedidos as p ON c.id = p.id_cliente JOIN productos as pr ON p.id_producto = pr.id 
     $where 
     ORDER BY c.nombre ASC";
@@ -56,31 +66,47 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consultas clase</title>
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
+
+    <title>Consultas pág 1</title>
 </head>
-<body>
+<body background="imagenes/3.jpg">
 <br/><br/>
-    <form action="full_pedidos.php">
+    <form action="full_pedidos_or.php">
         Genero:
-        <select name="genero" >
-            <option value="">--Seleccione--</option>
-            <option value="0">Femenino</option>
+        <select id="selected" type="text" name="genero" >
+            <option  value="">--Seleccione--</option>
+            <option value="0"selected><?php if($genero==0){
+                echo "Femenino";
+                }
+                else{
+                    echo "Masculino";
+                }
+                ?></option>
+                
             <option value="1">Masculino</option>
+            
+            
         </select>
         <br/><br/>
         Valor:
         <input type="number" name="valor" value="<?php echo $valor; ?>">
         <br/><br/>
-        <input type="submit" value="Buscar"/>
+        Edad:
+        <input type="number" name="edad" value="<?php echo $edad; ?>">
+        <br/><br/>
+        <input type="submit" value="Buscar por OR"/> 
+        <a href="full_pedidos_and.php">Buscar por AND</a>
+        <input type="submit" action="full_pedidos_and.php" value="Buscar por AND"/>
         <hr/>
     </form>
-
-    <h1>Lista de Pedidos</h1>
+    Página 1
+    <h1>Lista de consultas</h1>
     <table border="1">
         <tr>
             <td><b>Nombre Cliente</b></td>
             <td><b>Género</b></td>
-            <td><b>Teléfono</b></td>
+            <td><b>Edad</b></td>
             <td><b>Fecha entrega</b></td>
             <td><b>Nombre Producto</b></td>
             <td><b>Valor</b></td>            
@@ -108,7 +134,7 @@
         </td>
 
         <td>
-            <?php echo $pedidos[$i]["telefono"] ?>
+            <?php echo $pedidos[$i]["edad"] ?>
         </td>
 
         <td>
