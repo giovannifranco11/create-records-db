@@ -5,35 +5,26 @@
     if(isset($_REQUEST['valor'])){ 
         $valor = $_REQUEST['valor'];
         if($valor != ""){            
-            $where = "WHERE pr.valor = '$valor'";  
-        } 
+        $where = "WHERE pr.valor = '$valor'";    
+        }   
 
-        if(isset($_REQUEST['edad'])){ 
-            $edad = $_REQUEST['edad'];
-            if($edad != ""){  
-                if($where == ""){
-                    $where = "WHERE c.edad = '$edad'";
-                } 
-                else{
-                    $where = "$where AND c.edad = '$edad'";
-                }          
-                }
-                     
-            }
-
-    if(isset($_REQUEST['genero'])){    // función isset sirve para saber si existe lo que viene en el request   
+        if(isset($_REQUEST['genero'])){    // función isset sirve para saber si existe lo que viene en el request   
         $genero = $_REQUEST['genero'];
         if($genero != ""){
             if($where == ""){
-            $where = "WHERE c.genero = '$genero'";
+                $where = "WHERE c.genero = '$genero'";
             }
-            else{
-                $where = "$where AND c.genero = '$genero' AND c.edad = '$edad'";
+        }
+
+            if(isset($_REQUEST['edad'])){ 
+            $edad = $_REQUEST['edad'];
+            if($edad != ""){            
+             $where = "WHERE c.edad = '$edad'";  
+                }      
             }
-        }     
     }
     else{
-        $where = "$where AND c.genero = '$genero' AND c.edad = '$edad' AND pr.valor = '$valor'";
+        $where = "$where OR c.genero = '$genero' OR c.edad = '$edad' OR pr.valor = '$valor'";
     } 
 }
 

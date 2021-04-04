@@ -1,27 +1,35 @@
-<br/>
 <?php
     
     $where = '';
     if(isset($_REQUEST['valor'])){ 
         $valor = $_REQUEST['valor'];
         if($valor != ""){            
-        $where = "WHERE pr.valor = '$valor'";    
-        }   
+            $where = "WHERE pr.valor = '$valor'";  
+        } 
 
-        if(isset($_REQUEST['genero'])){    // función isset sirve para saber si existe lo que viene en el request   
+        if(isset($_REQUEST['edad'])){ 
+            $edad = $_REQUEST['edad'];
+            if($edad != ""){  
+                if($where == ""){
+                    $where = "WHERE c.edad = '$edad'";
+                } 
+                else{
+                    $where = "$where OR c.edad = '$edad'";
+                }          
+                }
+                     
+            }
+
+    if(isset($_REQUEST['genero'])){    // función isset sirve para saber si existe lo que viene en el request   
         $genero = $_REQUEST['genero'];
         if($genero != ""){
             if($where == ""){
-                $where = "WHERE c.genero = '$genero'";
+            $where = "WHERE c.genero = '$genero'";
             }
-        }
-
-            if(isset($_REQUEST['edad'])){ 
-            $edad = $_REQUEST['edad'];
-            if($edad != ""){            
-             $where = "WHERE c.edad = '$edad'";  
-                }      
+            else{
+                $where = "$where OR c.genero = '$genero' OR c.edad = '$edad'";
             }
+        }     
     }
     else{
         $where = "$where OR c.genero = '$genero' OR c.edad = '$edad' OR pr.valor = '$valor'";
@@ -45,6 +53,9 @@
     ORDER BY c.nombre ASC";
 
     var_dump($sql);
+    ?>
+    <hr/>
+    <?php
 
     //3. Prepare SQL sentence
     $a = $conexion->prepare($sql);
@@ -68,10 +79,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css" type="text/css">
 
-    <title>Consultas pág 1</title>
+    <title>Consultas OR pág 1</title>
 </head>
 <body background="imagenes/3.jpg">
-<br/><br/>
+
+<table>
+
+            <tr>
+                <td><hr/><hr/><hr/><img src="imagenes/logo.jpeg"" alt="Imagen"><hr/><hr/><hr/></td>
+                
+                <td>
+                <center>
+                <h1>BÚSQUEDA POR OR / PÁGINA 1</h1>
     <form action="full_pedidos_or.php">
         Genero:
         <select id="selected" type="text" name="genero" >
@@ -88,10 +107,11 @@
         Edad:
         <input type="number" name="edad" value="<?php echo $edad; ?>">
         <br/><br/>
-        <input type="submit" value="Buscar por OR"/> 
+        <input type="submit" value="Buscar por OR"/>  
+        <a href="full_pedidos_and.php"><input type="button" value="Ir a buscar por AND"></a>
         <hr/>
-    </form>
-    Página 1
+    </form>    
+
     <h1>Lista de consultas</h1>
     <table border="1">
         <tr>
@@ -143,6 +163,14 @@
 <?php  
     }
 ?>    
+</center>
     </table>
+                
+                </td>
+                <td><hr/><hr/><hr/><img src="imagenes/logo.jpeg"" alt="Imagen"><hr/><hr/><hr/></td> 
+                       
+    </tr>
+    </table>
+ 
 </body>
 </html>
