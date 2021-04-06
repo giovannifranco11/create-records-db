@@ -93,7 +93,7 @@
                 <h1>BÚSQUEDA POR OR / PÁGINA 1</h1>
     <form action="full_pedidos_or.php">
         Genero:
-        <select id="selected" type="text" name="genero" >
+        <select name="genero" >
             <option  value="">--Seleccione--</option>
             <option value="0">Femenino</option>                
             <option value="1">Masculino</option>
